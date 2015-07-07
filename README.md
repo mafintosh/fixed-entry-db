@@ -6,6 +6,8 @@ A flat file append-only database that uses fixed size entries
 npm install fixed-entry-db
 ```
 
+[![build status](http://img.shields.io/travis/mafintosh/fixed-entry-db.svg?style=flat)](http://travis-ci.org/mafintosh/fixed-entry-db)
+
 ## Usage
 
 ``` js
