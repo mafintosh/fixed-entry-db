@@ -1,0 +1,22 @@
+{
+  "name": "fixed-entry-db",
+  "version": "0.0.0",
+  "description": "A flat file append-only database that uses fixed size entries",
+  "main": "index.js",
+  "dependencies": {
+    "bulk-write-stream": "^1.0.0",
+    "from2": "^2.0.3",
+    "thunky": "^0.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/fixed-entry-db.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/fixed-entry-db/issues"
+  },
+  "homepage": "https://github.com/mafintosh/fixed-entry-db"
+}
