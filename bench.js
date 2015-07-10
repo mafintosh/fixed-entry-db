@@ -1,7 +1,8 @@
 var fixeddb = require('./')
+var from = require('from2')
 var fs = require('fs')
 
-var db = fixeddb('bench.db', 1024)
+var db = fixeddb('bench.db', 64)
 
 try {
   fs.unlinkSync('bench.db')
@@ -9,7 +10,7 @@ try {
   // do nothing
 }
 
-var entry = new Buffer(1024)
+var entry = new Buffer(64)
 entry.fill(0)
 
 var ws = db.createWriteStream()
@@ -21,13 +22,10 @@ function delta () {
   return Date.now() - now
 }
 
-function loop () {
-  for (var i = 0; i < 63; i++) {
-    ws.write(entry)
-  }
-  written += 64 * entry.length
-  if (++inc % 1024 === 0) console.log((1000 * written / delta()) + ' b/s')
-  ws.write(entry, loop)
-}
+from({highWaterMark: 64 * 1024}, read).pipe(ws)
 
-loop()
+function read (size, cb) {
+  written += entry.length
+  if (++inc % 1024 === 0) console.log((1000 * written / delta()) + ' b/s')
+  cb(null, entry)
+}
