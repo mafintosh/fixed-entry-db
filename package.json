@@ -1,6 +1,6 @@
 {
   "name": "fixed-entry-db",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A flat file append-only database that uses fixed size entries",
   "main": "index.js",
   "dependencies": {
