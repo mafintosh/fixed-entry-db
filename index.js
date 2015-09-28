@@ -126,6 +126,7 @@ DB.prototype.put = function (index, buf, cb) {
 DB.prototype.append = function (buf, cb) {
   if (!cb) cb = noop
   if (typeof buf === 'string') buf = new Buffer(buf)
+  if (Array.isArray(buf)) buf = Buffer.concat(buf)
 
   var self = this
   this.open(function (err) {

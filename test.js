@@ -18,6 +18,22 @@ function tmp () {
 
 tape('append', function (t) {
   var db = fixeddb(tmp(), 10)
+  db.append([new Buffer('helloworld'), new Buffer('hellowarld')], function (err) {
+    t.error(err)
+    db.get(0, function (err, buf) {
+      t.error(err)
+      t.same(buf, new Buffer('helloworld'))
+      db.get(1, function (err, buf) {
+        t.error(err)
+        t.same(buf, new Buffer('hellowarld'))
+        t.end()
+      })
+    })
+  })
+})
+
+tape('append batch', function (t) {
+  var db = fixeddb(tmp(), 10)
   db.append(new Buffer('helloworld'), function (err) {
     t.error(err)
     db.get(0, function (err, buf) {
